@@ -35,7 +35,7 @@ Reflector.defineMetadata(key, 'string', Target);
 const result = Reflector.getMetadata(key, Target); // MyMetadata
 ```
 
-A utility `getDecoratorTargetType` returns type of decorator target.
+The utility `getDecoratorTargetType` returns type of decorator target.
 
 ```ts
 import {getDecoratorTargetType} from '@e22m4u/ts-metadata';
