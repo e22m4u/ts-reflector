@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getDecoratorTargetType = exports.DecoratorTargetType = void 0;
+exports.DecoratorTargetType = void 0;
+exports.getDecoratorTargetType = getDecoratorTargetType;
 /**
  * Decorator target type.
  */
@@ -48,4 +49,3 @@ function getDecoratorTargetType(target, propertyKey, descriptorOrIndex) {
         return D.INSTANCE;
     }
 }
-exports.getDecoratorTargetType = getDecoratorTargetType;
