@@ -1,1 +1,1 @@
-export * from './get-decorator-target-type';
+export * from './get-decorator-target-type.js';

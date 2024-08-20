@@ -1,11 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Reflector = void 0;
-require("reflect-metadata");
+import 'reflect-metadata';
 /**
  * Typed Reflect wrapper.
  */
-class Reflector {
+export class Reflector {
     /**
      * Define metadata.
      *
@@ -68,4 +65,3 @@ class Reflector {
             : Reflect.getOwnMetadata(key, target);
     }
 }
-exports.Reflector = Reflector;

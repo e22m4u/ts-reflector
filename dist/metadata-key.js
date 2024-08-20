@@ -1,10 +1,35 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MetadataKey = void 0;
 /**
  * Metadata key.
  */
-class MetadataKey {
+export class MetadataKey {
+    name;
+    /**
+     * Fix generic type validation.
+     *
+     * Example:
+     *
+     * ```ts
+     * class Foo<T> {}
+     * class Bar<T> {}
+     *
+     * class Baz {
+     *     static method<T>(
+     *         foo: Foo<T>,
+     *         bar: Bar<T>,
+     *     ) {}
+     * }
+     *
+     * Baz.method(
+     *     new Foo<string>(),
+     *     new Bar<number>(), // No error because T is not used.
+     * );
+     * ```
+     */
+    _fixUnusedGeneric;
+    /**
+     * Fix structural typing.
+     */
+    _fixStructuralTyping = 'metadataKey';
     /**
      * Constructor.
      *
@@ -12,10 +37,6 @@ class MetadataKey {
      */
     constructor(name) {
         this.name = name;
-        /**
-         * Fix structural typing.
-         */
-        this._fixStructuralTyping = 'metadataKey';
     }
     /**
      * To string.
@@ -26,4 +47,3 @@ class MetadataKey {
             : this.constructor.name;
     }
 }
-exports.MetadataKey = MetadataKey;

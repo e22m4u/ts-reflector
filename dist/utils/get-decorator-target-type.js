@@ -1,11 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DecoratorTargetType = void 0;
-exports.getDecoratorTargetType = getDecoratorTargetType;
 /**
  * Decorator target type.
  */
-var DecoratorTargetType;
+export var DecoratorTargetType;
 (function (DecoratorTargetType) {
     DecoratorTargetType["CONSTRUCTOR"] = "constructor";
     DecoratorTargetType["INSTANCE"] = "instance";
@@ -16,7 +12,7 @@ var DecoratorTargetType;
     DecoratorTargetType["CONSTRUCTOR_PARAMETER"] = "constructorParameter";
     DecoratorTargetType["STATIC_METHOD_PARAMETER"] = "staticMethodParameter";
     DecoratorTargetType["INSTANCE_METHOD_PARAMETER"] = "instanceMethodParameter";
-})(DecoratorTargetType || (exports.DecoratorTargetType = DecoratorTargetType = {}));
+})(DecoratorTargetType || (DecoratorTargetType = {}));
 /**
  * Get decorator target type.
  *
@@ -24,7 +20,7 @@ var DecoratorTargetType;
  * @param propertyKey
  * @param descriptorOrIndex
  */
-function getDecoratorTargetType(target, propertyKey, descriptorOrIndex) {
+export function getDecoratorTargetType(target, propertyKey, descriptorOrIndex) {
     const isCtor = typeof target === 'function';
     const isParameter = typeof descriptorOrIndex === 'number';
     const isProperty = propertyKey != null && descriptorOrIndex == null;

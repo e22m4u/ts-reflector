@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {MetadataKey} from '../src';
+import {MetadataKey} from './metadata-key.js';
 
 describe('MetadataKey', () => {
   describe('toString', () => {

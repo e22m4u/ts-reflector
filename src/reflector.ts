@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import {MetadataKey} from './metadata-key';
+import {MetadataKey} from './metadata-key.js';
 
 /**
  * Reflector key.

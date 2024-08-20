@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-unused-vars: 0 */
 import {expect} from 'chai';
-import {DecoratorTargetType as DTT} from '../../src';
-import {getDecoratorTargetType} from './get-decorator-target-type';
+import {getDecoratorTargetType} from './get-decorator-target-type.js';
+import {DecoratorTargetType as DTT} from './get-decorator-target-type.js';
 
 describe('getDecoratorTargetType', () => {
   const validate = function (value: DTT) {

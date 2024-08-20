@@ -1,6 +1,6 @@
 import {expect} from 'chai';
-import {Reflector} from '../src';
-import {MetadataKey} from '../src';
+import {Reflector} from './reflector.js';
+import {MetadataKey} from './metadata-key.js';
 
 const NR = Reflect;
 const R = Reflector;

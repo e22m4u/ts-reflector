@@ -1,3 +1,3 @@
-export * from './utils';
-export * from './reflector';
-export * from './metadata-key';
+export * from './reflector.js';
+export * from './utils/index.js';
+export * from './metadata-key.js';
