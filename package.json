@@ -1,7 +1,7 @@
 {
   "name": "@e22m4u/ts-reflector",
   "version": "0.1.0",
-  "description": "A typed wrapper of the Metadata Reflection API",
+  "description": "Типизированная обертка для Metadata Reflection API",
   "author": "e22m4u <e22m4u@yandex.ru>",
   "keywords": [
     "reflection",
@@ -28,25 +28,25 @@
     "reflect-metadata": "*"
   },
   "devDependencies": {
-    "@commitlint/cli": "~19.4.0",
-    "@commitlint/config-conventional": "~19.2.2",
-    "@eslint/js": "^9.9.0",
-    "@types/chai": "~4.3.17",
-    "@types/mocha": "~10.0.7",
-    "@types/node": "~22.4.1",
+    "@commitlint/cli": "~19.5.0",
+    "@commitlint/config-conventional": "~19.5.0",
+    "@eslint/js": "^9.10.0",
+    "@types/chai": "~4.3.19",
+    "@types/mocha": "~10.0.8",
+    "@types/node": "~22.5.4",
     "c8": "~10.1.2",
     "chai": "~5.1.1",
-    "eslint": "~9.9.0",
+    "eslint": "~9.10.0",
     "eslint-config-prettier": "~9.1.0",
     "eslint-plugin-chai-expect": "~3.1.0",
     "eslint-plugin-mocha": "~10.5.0",
-    "husky": "~9.1.5",
+    "husky": "~9.1.6",
     "mocha": "~10.7.3",
     "prettier": "~3.3.3",
     "rimraf": "~6.0.1",
-    "tsx": "~4.17.0",
+    "tsx": "~4.19.1",
     "typescript": "~5.5.4",
-    "typescript-eslint": "~8.2.0"
+    "typescript-eslint": "~8.5.0"
   },
   "license": "MIT"
 }
