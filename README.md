@@ -38,7 +38,7 @@ options to your `tsconfig.json` file.
 }
 ```
 
-### MetadataKey\<T\>
+## MetadataKey\<T\>
 
 Here is an example of using the `MetadataKey<T>`
 key to store metadata. A value will be validated
@@ -72,7 +72,7 @@ Reflector.defineMetadata(key, 'string', Target);
 const result = Reflector.getMetadata(key, Target); // MyData
 ```
 
-### getDecoratorTargetType
+## getDecoratorTargetType
 
 The `getDecoratorTargetType` utility function determines
 where a decorator is applied.
