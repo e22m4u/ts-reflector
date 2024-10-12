@@ -2,7 +2,7 @@
 
 *English | [Русский](./README-ru.md)*
 
-Typed wrapper for
+A typed wrapper for
 [The Metadata Reflection API](https://rbuckton.github.io/reflect-metadata/)
 
 ## Installation

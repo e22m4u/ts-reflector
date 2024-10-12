@@ -77,7 +77,7 @@ const result = Reflector.getMetadata(key, Target); // MyData
 
 ### getDecoratorTargetType
 
-С помощью функции `getDecoratorTargetType` можно определить
+С помощью утилиты `getDecoratorTargetType` можно определить
 место применения декоратора.
 
 ```ts
