@@ -1,6 +1,6 @@
 # @e22m4u/ts-reflector
 
-[English](./README.md) | Русский
+*[English](./README.md) | Русский*
 
 Типизированная обертка для
 [Metadata Reflection API](https://rbuckton.github.io/reflect-metadata/)

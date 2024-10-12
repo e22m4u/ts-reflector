@@ -1,9 +1,9 @@
 # @e22m4u/ts-reflector
 
-English | [Русский](./README-ru.md)
+*English | [Русский](./README-ru.md)*
 
-Typed wrapper for the
-[Metadata Reflection API](https://rbuckton.github.io/reflect-metadata/)
+Typed wrapper for
+[The Metadata Reflection API](https://rbuckton.github.io/reflect-metadata/)
 
 ## Installation
 
