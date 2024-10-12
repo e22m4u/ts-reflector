@@ -13,9 +13,8 @@ npm install @e22m4u/ts-reflector
 
 #### ES-module support
 
-To use this module, your project must support ECMAScript
-module loading. The recommended way to set up a TypeScript
-project to work with ESM is to follow the steps below.
+Native ES-module support is required for this module.
+Do the following steps to set up your TypeScript project.
 
 1. add `"type": "module"` to the `package.json` file
 2. add the options below to the `tsconfig.json`
