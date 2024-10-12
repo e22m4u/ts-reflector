@@ -40,9 +40,12 @@ npm install @e22m4u/ts-reflector
 }
 ```
 
-## Пример
+### MetadataKey\<T\>
 
-Установка и получение мета-данных с использованием ключа `MetadataKey<T>`
+Ниже приведен пример использования ключа `MetadataKey<T>`
+для хранения метаданных. Значение проверяется на соответствие
+заданному ключу перед сохранением. Кроме того, тип метаданных
+будет автоматически выведен при извлечении по ключу.
 
 ```ts
 import {Reflector} from '@e22m4u/ts-metadata';
@@ -72,7 +75,7 @@ Reflector.defineMetadata(key, 'string', Target);
 const result = Reflector.getMetadata(key, Target); // MyData
 ```
 
-## Утилиты
+### getDecoratorTargetType
 
 С помощью функции `getDecoratorTargetType` можно определить
 место применения декоратора.

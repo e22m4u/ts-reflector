@@ -39,9 +39,13 @@ the options below to your project's `tsconfig.json` file.
 }
 ```
 
-## Example
+### MetadataKey\<T\>
 
-Setting and retrieving metadata using the `MetadataKey<T>` key.
+Here is an example of using the `MetadataKey<T>`
+key to store metadata. A value will be validated
+against the given key before being stored. Furthermore,
+the type of metadata will be inferred automatically
+when it is retrieved.
 
 ```ts
 import {Reflector} from '@e22m4u/ts-metadata';
@@ -69,9 +73,9 @@ Reflector.defineMetadata(key, 'string', Target);
 const result = Reflector.getMetadata(key, Target); // MyData
 ```
 
-## Utilities
+### getDecoratorTargetType
 
-You can use the `getDecoratorTargetType` function to determine
+The `getDecoratorTargetType` utility function determines
 where a decorator is applied.
 
 ```ts
