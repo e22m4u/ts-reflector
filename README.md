@@ -26,7 +26,7 @@ Do the following steps to set up your TypeScript project.
 }
 ```
 
-#### Decorator support
+#### Decorators support
 
 To declare metadata using decorators, you'll need to add
 the options below to your project's `tsconfig.json` file.
