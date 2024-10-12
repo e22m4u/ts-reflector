@@ -1,23 +1,24 @@
 # @e22m4u/ts-reflector
 
-ES-модуль типизированной обертки для
+English | [Русский](./README-ru.md)
+
+Typed wrapper for the
 [Metadata Reflection API](https://rbuckton.github.io/reflect-metadata/)
 
-## Установка
+## Installation
 
 ```bash
 npm install @e22m4u/ts-reflector
 ```
 
-#### Поддержка ES-модулей
+#### ES-module support
 
-Для использования данного модуля требуется поддержка вашим
-проектом возможности загрузки модулей стандарта ECMAScript.
-Рекомендуемый способ настройки TypeScript проекта для работы
-с ESM заключается в выполнении шагов указанных ниже.
+To use this module, your project must support ECMAScript
+module loading. The recommended way to set up a TypeScript
+project to work with ESM is to follow the steps below.
 
-1. добавить `"type": "module"` в файл `package.json`
-2. добавить указанные ниже опции в файл `tsconfig.json`
+1. add `"type": "module"` to the `package.json` file
+2. add the options below to the `tsconfig.json`
 
 ```json
 {
@@ -26,10 +27,10 @@ npm install @e22m4u/ts-reflector
 }
 ```
 
-#### Поддержка декораторов
+#### Decorator support
 
-Для объявления мета-данных с помощью декораторов, потребуется добавить
-указанные ниже опции в файл `tsconfig.json` вашего проекта.
+To declare metadata using decorators, you'll need to add
+the options below to your project's `tsconfig.json` file.
 
 ```json
 {
@@ -38,9 +39,9 @@ npm install @e22m4u/ts-reflector
 }
 ```
 
-## Пример
+## Example
 
-Установка и получение мета-данных с использованием ключа `MetadataKey<T>`
+Setting and retrieving metadata using the `MetadataKey<T>` key.
 
 ```ts
 import {Reflector} from '@e22m4u/ts-metadata';
@@ -49,52 +50,49 @@ import {MetadataKey} from '@e22m4u/ts-metadata';
 type MyData = {foo: string};
 class Target {/* ... */}
 
-// создание ключа MetadataKey<T>
-// для мета-данных типа MyData
+// create the MetadataKey<T> of MyData
 const key = new MetadataKey<MyData>();
 
-// назначение мета-данных классу Target
-// с помощью метода `defineMetadata`
+// assign metadata to the Target class
+// using the `defineMetadata` method
 Reflector.defineMetadata(key, {foo: 'bar'}, Target);
 
-// метод `defineMetadata` проверяет тип
-// устанавливаемого значения на соответствие
-// ключу MetadataKey<MyData>, где допустимым
-// значением является MyData
-
+// the `defineMetadata` method checks the type
+// of the given value by the MetadataKey<MyData>
+// key which requires MyData
+Reflector.defineMetadata(key, 'string', Target);
 // TypeError: Argument of type 'string' is not assignable
 // to parameter of type MyData.
-Reflector.defineMetadata(key, 'string', Target);
 
-// тип возвращаемых значений методов `getMetadata`
-// и `getOwnMetadata` выводится согласно ключу
+// return type of `getMetadata` and `getOwnMetadata`
+// methods is inferred by the given key
 const result = Reflector.getMetadata(key, Target); // MyData
 ```
 
-## Утилиты
+## Utilities
 
-С помощью функции `getDecoratorTargetType` можно определить
-место применения декоратора.
+You can use the `getDecoratorTargetType` function to determine
+where a decorator is applied.
 
 ```ts
 import {getDecoratorTargetType} from '@e22m4u/ts-metadata';
 import {DecoratorTargetType as DTT} from '@e22m4u/ts-metadata';
 
-// объявление декоратора
+// declare a decorator
 function myDecorator(
   target: object,
   propertyKey?: string,
   descriptorOrIndex?: PropertyDescriptor | number,
 ) {
-  // передача всех аргументов
-  // декоратора в функцию
+  // pass all decorator arguments
+  // to the utility function
   const type = getDecoratorTargetType(
     target,
     propertyKey,
     descriptorOrIndex,
   );
-  // сравнение возвращаемго значения
-  // для определения места применения
+  // compare the returned value
+  // to determine where it's applied
   if (type === DTT.CONSTRUCTOR)
     console.log('@myDecorator is applied to a class');
   if (type === DTT.STATIC_METHOD)
@@ -115,12 +113,12 @@ function myDecorator(
 
 ```
 
-## Тесты
+## Tests
 
 ```bash
 npm run test
 ```
 
-## Лицензия
+## License
 
 MIT
