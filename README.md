@@ -74,8 +74,8 @@ const result = Reflector.getMetadata(key, Target); // MyData
 
 ## getDecoratorTargetType
 
-The `getDecoratorTargetType` utility function determines
-where a decorator is applied.
+The `getDecoratorTargetType` utility determines where
+a decorator is applied.
 
 ```ts
 import {getDecoratorTargetType} from '@e22m4u/ts-metadata';
