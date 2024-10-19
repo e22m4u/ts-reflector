@@ -11,9 +11,9 @@ A typed wrapper for
 npm install @e22m4u/ts-reflector
 ```
 
-#### Decorators support
+#### Experimental decorators
 
-To enable decorators support add the following
+To enable experimental decorators support add the following
 options to your `tsconfig.json` file.
 
 ```json
