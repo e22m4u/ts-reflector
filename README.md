@@ -13,7 +13,7 @@ npm install @e22m4u/ts-reflector
 
 #### Decorators support
 
-To declare metadata using decorators add the following
+To enable decorators support add the following
 options to your `tsconfig.json` file.
 
 ```json
