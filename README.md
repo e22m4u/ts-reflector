@@ -11,21 +11,6 @@ A typed wrapper for
 npm install @e22m4u/ts-reflector
 ```
 
-#### ES-module support
-
-Native ES-module support is required for this module.
-Do the following steps to set up your TypeScript project.
-
-1. add `"type": "module"` to the `package.json` file
-2. add the options below to the `tsconfig.json`
-
-```json
-{
-  "module": "NodeNext",
-  "moduleResolution": "NodeNext"
-}
-```
-
 #### Decorators support
 
 To declare metadata using decorators add the following
