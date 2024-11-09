@@ -1,0 +1,1 @@
+{"root":["../src/index.ts","../src/metadata-key.spec.ts","../src/metadata-key.ts","../src/reflector.spec.ts","../src/reflector.ts","../src/utils/get-decorator-target-type.spec.ts","../src/utils/get-decorator-target-type.ts","../src/utils/index.ts"],"version":"5.6.3"}
