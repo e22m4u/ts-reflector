@@ -45,10 +45,9 @@ const key = new MetadataKey<MyData>();
 // с помощью метода `defineMetadata`
 Reflector.defineMetadata(key, {foo: 'bar'}, Target);
 
-// метод `defineMetadata` проверяет тип
-// устанавливаемого значения на соответствие
-// ключу MetadataKey<MyData>, где допустимым
-// значением является MyData
+// метод `defineMetadata` проверяет тип устанавливаемого
+// значения на соответствие ключу MetadataKey<MyData>,
+// где допустимым значением является MyData
 Reflector.defineMetadata(key, 'string', Target);
 // TypeError: Argument of type 'string' is not assignable
 // to parameter of type MyData.
@@ -60,8 +59,11 @@ const result = Reflector.getMetadata(key, Target); // MyData
 
 ## getDecoratorTargetType
 
-С помощью утилиты `getDecoratorTargetType` можно определить
-место применения декоратора.
+Утилита `getDecoratorTargetType` предоставляет простой способ определить,
+где применен декоратор в вашем коде. При написании пользовательских декораторов
+часто необходимо различное поведение в зависимости от того, используется ли декоратор
+для класса, метода, свойства или параметра. Эта утилита возвращает значение enum,
+указывающее точное место применения декоратора.
 
 ```ts
 import {getDecoratorTargetType} from '@e22m4u/ts-metadata';
@@ -80,8 +82,8 @@ function myDecorator(
     propertyKey,
     descriptorOrIndex,
   );
-  // сравнение возвращаемго значения
-  // для определения места применения
+  // проверка места применения декоратора
+  // используя значение enum
   if (type === DTT.CONSTRUCTOR)
     console.log('@myDecorator is applied to a class');
   if (type === DTT.STATIC_METHOD)

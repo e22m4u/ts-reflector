@@ -23,13 +23,11 @@ options to your `tsconfig.json` file.
 }
 ```
 
-## MetadataKey\<T\>
+## MetadataKey<T>
 
-Here is an example of using the `MetadataKey<T>`
-key to store metadata. A value will be validated
-against the given key before being stored. Furthermore,
-the type of metadata will be inferred automatically
-when it is retrieved.
+Here's an example of using MetadataKey<T> for storing metadata. Values
+are validated against the given key type before storage. The metadata
+type is also automatically inferred when retrieving values.
 
 ```ts
 import {Reflector} from '@e22m4u/ts-metadata';
@@ -38,49 +36,48 @@ import {MetadataKey} from '@e22m4u/ts-metadata';
 type MyData = {foo: string};
 class Target {/* ... */}
 
-// create the MetadataKey<T> of MyData
+// Create a MetadataKey<T> for MyData type
 const key = new MetadataKey<MyData>();
 
-// assign metadata to the Target class
-// using the `defineMetadata` method
+// Assign metadata to the Target class
 Reflector.defineMetadata(key, {foo: 'bar'}, Target);
 
-// the `defineMetadata` method checks the type
-// of the given value by the MetadataKey<MyData>
-// key which requires MyData
+// The defineMetadata method validates the value type
+// against the MetadataKey<MyData> type constraint
 Reflector.defineMetadata(key, 'string', Target);
 // TypeError: Argument of type 'string' is not assignable
 // to parameter of type MyData.
 
-// return type of `getMetadata` and `getOwnMetadata`
-// methods is inferred by the given key
+// Return types from getMetadata and getOwnMetadata
+// are automatically inferred from the key type
 const result = Reflector.getMetadata(key, Target); // MyData
 ```
 
 ## getDecoratorTargetType
 
-The `getDecoratorTargetType` utility determines where
-a decorator is applied.
+The `getDecoratorTargetType` utility provides a simple way to identify where
+a decorator is applied in your code. When writing custom decorators, it's often
+necessary to implement different behavior based on whether the decorator is used
+on a class, method, property, or parameter. This utility returns an enum value
+indicating the exact location of the decorator.
 
 ```ts
 import {getDecoratorTargetType} from '@e22m4u/ts-metadata';
 import {DecoratorTargetType as DTT} from '@e22m4u/ts-metadata';
 
-// declare a decorator
+// Define a decorator
 function myDecorator(
   target: object,
   propertyKey?: string,
   descriptorOrIndex?: PropertyDescriptor | number,
 ) {
-  // pass all decorator arguments
-  // to the utility function
+  // Pass the decorator arguments to the utility
   const type = getDecoratorTargetType(
     target,
     propertyKey,
     descriptorOrIndex,
   );
-  // compare the returned value
-  // to determine where it's applied
+  // Check the returned type to determine the decorator's location
   if (type === DTT.CONSTRUCTOR)
     console.log('@myDecorator is applied to a class');
   if (type === DTT.STATIC_METHOD)
