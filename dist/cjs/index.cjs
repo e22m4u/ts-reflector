@@ -19,14 +19,14 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
 // dist/esm/index.js
-var esm_exports = {};
-__export(esm_exports, {
+var index_exports = {};
+__export(index_exports, {
   DecoratorTargetType: () => DecoratorTargetType,
   MetadataKey: () => MetadataKey,
   Reflector: () => Reflector,
   getDecoratorTargetType: () => getDecoratorTargetType
 });
-module.exports = __toCommonJS(esm_exports);
+module.exports = __toCommonJS(index_exports);
 
 // dist/esm/reflector.js
 var import_reflect_metadata = require("reflect-metadata");
