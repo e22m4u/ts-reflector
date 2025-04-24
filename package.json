@@ -1,7 +1,7 @@
 {
   "name": "@e22m4u/ts-reflector",
   "version": "0.1.6",
-  "description": "Typed wrapper for The Metadata Reflection API",
+  "description": "Типизированная обертка для Metadata Reflection API",
   "author": "e22m4u <e22m4u@yandex.ru>",
   "license": "MIT",
   "keywords": [

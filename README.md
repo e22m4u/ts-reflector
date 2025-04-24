@@ -1,20 +1,18 @@
 # @e22m4u/ts-reflector
 
-*English | [Русский](./README-ru.md)*
+Типизированная обертка для
+[Metadata Reflection API](https://rbuckton.github.io/reflect-metadata/)
 
-A typed wrapper for
-[The Metadata Reflection API](https://rbuckton.github.io/reflect-metadata/)
-
-## Installation
+## Установка
 
 ```bash
 npm install @e22m4u/ts-reflector
 ```
 
-#### Experimental decorators
+#### Экспериментальные декораторы
 
-To enable experimental decorators support add the following
-options to your `tsconfig.json` file.
+Для включения поддержки экспериментальных декораторов, добавьте
+указанные ниже опции в файл `tsconfig.json` вашего проекта.
 
 ```json
 {
@@ -23,11 +21,12 @@ options to your `tsconfig.json` file.
 }
 ```
 
-## MetadataKey<T>
+## MetadataKey\<T\>
 
-Here's an example of using MetadataKey<T> for storing metadata. Values
-are validated against the given key type before storage. The metadata
-type is also automatically inferred when retrieving values.
+Ниже приведен пример использования ключа `MetadataKey<T>`
+для хранения метаданных. Значение проверяется на соответствие
+заданному ключу перед сохранением. Кроме того, тип метаданных
+будет автоматически выведен при извлечении по ключу.
 
 ```ts
 import {Reflector} from '@e22m4u/ts-metadata';
@@ -36,48 +35,53 @@ import {MetadataKey} from '@e22m4u/ts-metadata';
 type MyData = {foo: string};
 class Target {/* ... */}
 
-// Create a MetadataKey<T> for MyData type
+// создание ключа MetadataKey<T>
+// для мета-данных типа MyData
 const key = new MetadataKey<MyData>();
 
-// Assign metadata to the Target class
+// назначение мета-данных классу Target
+// с помощью метода `defineMetadata`
 Reflector.defineMetadata(key, {foo: 'bar'}, Target);
 
-// The defineMetadata method validates the value type
-// against the MetadataKey<MyData> type constraint
+// метод `defineMetadata` проверяет тип устанавливаемого
+// значения на соответствие ключу MetadataKey<MyData>,
+// где допустимым значением является MyData
 Reflector.defineMetadata(key, 'string', Target);
 // TypeError: Argument of type 'string' is not assignable
 // to parameter of type MyData.
 
-// Return types from getMetadata and getOwnMetadata
-// are automatically inferred from the key type
+// тип возвращаемых значений методов `getMetadata`
+// и `getOwnMetadata` выводится согласно ключу
 const result = Reflector.getMetadata(key, Target); // MyData
 ```
 
 ## getDecoratorTargetType
 
-The `getDecoratorTargetType` utility provides a simple way to identify where
-a decorator is applied in your code. When writing custom decorators, it's often
-necessary to implement different behavior based on whether the decorator is used
-on a class, method, property, or parameter. This utility returns an enum value
-indicating the exact location of the decorator.
+Утилита `getDecoratorTargetType` предоставляет простой способ определить,
+где применен декоратор в вашем коде. При написании пользовательских декораторов
+часто необходимо различное поведение в зависимости от того, используется ли декоратор
+для класса, метода, свойства или параметра. Эта утилита возвращает значение enum,
+указывающее точное место применения декоратора.
 
 ```ts
 import {getDecoratorTargetType} from '@e22m4u/ts-metadata';
 import {DecoratorTargetType as DTT} from '@e22m4u/ts-metadata';
 
-// Define a decorator
+// объявление декоратора
 function myDecorator(
   target: object,
   propertyKey?: string,
   descriptorOrIndex?: PropertyDescriptor | number,
 ) {
-  // Pass the decorator arguments to the utility
+  // передача всех аргументов
+  // декоратора в утилиту
   const type = getDecoratorTargetType(
     target,
     propertyKey,
     descriptorOrIndex,
   );
-  // Check the returned type to determine the decorator's location
+  // проверка места применения декоратора
+  // используя значение enum
   if (type === DTT.CONSTRUCTOR)
     console.log('@myDecorator is applied to a class');
   if (type === DTT.STATIC_METHOD)
@@ -98,12 +102,12 @@ function myDecorator(
 
 ```
 
-## Tests
+## Тесты
 
 ```bash
 npm run test
 ```
 
-## License
+## Лицензия
 
 MIT
