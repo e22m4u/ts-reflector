@@ -31,6 +31,7 @@ export default [
     rules: {
       ...eslintJs.configs.recommended.rules,
       ...eslintPrettierConfig.rules,
+      ...eslintMochaPlugin.configs.recommended.rules,
       ...eslintTypescript.configs.recommended.reduce(
         (rules, config) => ({...rules, ...config.rules}),
         {},

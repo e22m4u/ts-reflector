@@ -14,27 +14,27 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 import { expect } from 'chai';
 import { getDecoratorTargetType } from './get-decorator-target-type.js';
 import { DecoratorTargetType as DTT } from './get-decorator-target-type.js';
-describe('getDecoratorTargetType', () => {
+describe('getDecoratorTargetType', function () {
     const validate = function (value) {
         return function (target, propertyKey, descriptorOrIndex) {
             const type = getDecoratorTargetType(target, propertyKey, descriptorOrIndex);
             expect(value).to.be.eq(type);
         };
     };
-    it('returns CONSTRUCTOR', () => {
+    it('returns CONSTRUCTOR', function () {
         let Target = class Target {
         };
         Target = __decorate([
             validate(DTT.CONSTRUCTOR)
         ], Target);
     });
-    it('returns INSTANCE', () => {
+    it('returns INSTANCE', function () {
         class Target {
         }
         const decorator = validate(DTT.INSTANCE);
         decorator(Target.prototype);
     });
-    it('returns STATIC_METHOD', () => {
+    it('returns STATIC_METHOD', function () {
         class Target {
             static method() {
                 /**/
@@ -47,7 +47,7 @@ describe('getDecoratorTargetType', () => {
             __metadata("design:returntype", void 0)
         ], Target, "method", null);
     });
-    it('returns INSTANCE_METHOD', () => {
+    it('returns INSTANCE_METHOD', function () {
         class Target {
             method() {
                 /**/
@@ -60,7 +60,7 @@ describe('getDecoratorTargetType', () => {
             __metadata("design:returntype", void 0)
         ], Target.prototype, "method", null);
     });
-    it('returns STATIC_PROPERTY', () => {
+    it('returns STATIC_PROPERTY', function () {
         class Target {
             static prop;
         }
@@ -69,7 +69,7 @@ describe('getDecoratorTargetType', () => {
             __metadata("design:type", Object)
         ], Target, "prop", void 0);
     });
-    it('returns INSTANCE_PROPERTY', () => {
+    it('returns INSTANCE_PROPERTY', function () {
         class Target {
             prop;
         }
@@ -78,7 +78,7 @@ describe('getDecoratorTargetType', () => {
             __metadata("design:type", Object)
         ], Target.prototype, "prop", void 0);
     });
-    it('returns CONSTRUCTOR_PARAMETER', () => {
+    it('returns CONSTRUCTOR_PARAMETER', function () {
         let Target = class Target {
             constructor(param) {
                 /**/
@@ -89,7 +89,7 @@ describe('getDecoratorTargetType', () => {
             __metadata("design:paramtypes", [Object])
         ], Target);
     });
-    it('returns STATIC_METHOD_PARAMETER', () => {
+    it('returns STATIC_METHOD_PARAMETER', function () {
         class Target {
             static method(param) {
                 /**/
@@ -102,7 +102,7 @@ describe('getDecoratorTargetType', () => {
             __metadata("design:returntype", void 0)
         ], Target, "method", null);
     });
-    it('returns INSTANCE_METHOD_PARAMETER', () => {
+    it('returns INSTANCE_METHOD_PARAMETER', function () {
         class Target {
             method(param) {
                 /**/

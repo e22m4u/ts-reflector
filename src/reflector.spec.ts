@@ -10,9 +10,9 @@ const METADATA = {property: 'value'};
 
 type MD = typeof METADATA;
 
-describe('Reflector', () => {
-  describe('defineMetadata', () => {
-    it('allows to define metadata by plain keys', () => {
+describe('Reflector', function () {
+  describe('defineMetadata', function () {
+    it('allows to define metadata by plain keys', function () {
       class Context {}
       const symbolKey = Symbol();
       const stringKey = 'string';
@@ -32,7 +32,7 @@ describe('Reflector', () => {
       expect(objectMd).to.be.eq(METADATA);
     });
 
-    it('allows define metadata by the MetadataKey', () => {
+    it('allows define metadata by the MetadataKey', function () {
       class Context {}
       const key = new MetadataKey<MD>('key');
       R.defineMetadata(key, METADATA, Context);
@@ -40,7 +40,7 @@ describe('Reflector', () => {
       expect(metadata).to.be.eq(METADATA);
     });
 
-    it('can distinguish instances of the MetadataKey', () => {
+    it('can distinguish instances of the MetadataKey', function () {
       class TestClass {}
       const metadata1 = 'metadata-1';
       const metadata2 = 'metadata-2';
@@ -55,21 +55,21 @@ describe('Reflector', () => {
       expect(result1).to.be.not.eq(result2);
     });
 
-    it('sets class metadata', () => {
+    it('sets class metadata', function () {
       class Context {}
       R.defineMetadata(METADATA_KEY, METADATA, Context);
       const result = NR.getMetadata(METADATA_KEY, Context);
       expect(result).to.be.eql(METADATA);
     });
 
-    it('sets prototype metadata', () => {
+    it('sets prototype metadata', function () {
       class Context {}
       R.defineMetadata(METADATA_KEY, METADATA, Context.prototype);
       const result = NR.getMetadata(METADATA_KEY, Context.prototype);
       expect(result).to.be.eql(METADATA);
     });
 
-    it('sets metadata of a class property', () => {
+    it('sets metadata of a class property', function () {
       class Context {
         prop?: string;
       }
@@ -78,7 +78,7 @@ describe('Reflector', () => {
       expect(result).to.be.eql(METADATA);
     });
 
-    it('sets metadata of a prototype property', () => {
+    it('sets metadata of a prototype property', function () {
       class Context {
         prop?: string;
       }
@@ -88,8 +88,8 @@ describe('Reflector', () => {
     });
   });
 
-  describe('hasMetadata', () => {
-    it('allows to check metadata by scalar keys', () => {
+  describe('hasMetadata', function () {
+    it('allows to check metadata by scalar keys', function () {
       class Context {}
       const symbolKey = Symbol();
       const stringKey = 'string';
@@ -109,7 +109,7 @@ describe('Reflector', () => {
       expect(inObject).to.be.true;
     });
 
-    it('allows to check metadata by the MetadataKey', () => {
+    it('allows to check metadata by the MetadataKey', function () {
       class Context {}
       const key = new MetadataKey<MD>('key');
       NR.defineMetadata(key, METADATA, Context);
@@ -117,7 +117,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('checks if metadata in a class', () => {
+    it('checks if metadata in a class', function () {
       class Context {}
       const noMd = R.hasMetadata(METADATA_KEY, Context);
       expect(noMd).to.be.false;
@@ -126,7 +126,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('checks if metadata in a prototype', () => {
+    it('checks if metadata in a prototype', function () {
       class Context {}
       const noMd = R.hasMetadata(METADATA_KEY, Context.prototype);
       expect(noMd).to.be.false;
@@ -135,7 +135,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('checks if metadata in a class property', () => {
+    it('checks if metadata in a class property', function () {
       class Context {
         prop?: string;
       }
@@ -146,7 +146,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('checks if metadata in a prototype property', () => {
+    it('checks if metadata in a prototype property', function () {
       class Context {
         prop?: string;
       }
@@ -157,7 +157,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('checks if parent metadata in a class', () => {
+    it('checks if parent metadata in a class', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       const noMd = R.hasMetadata(METADATA_KEY, ContextB);
@@ -167,7 +167,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('checks if parent metadata in a prototype', () => {
+    it('checks if parent metadata in a prototype', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       const noMd = R.hasMetadata(METADATA_KEY, ContextB.prototype);
@@ -177,7 +177,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('checks if parent metadata in a class property', () => {
+    it('checks if parent metadata in a class property', function () {
       class ContextA {
         prop?: string;
       }
@@ -189,7 +189,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('checks if parent metadata in a prototype property', () => {
+    it('checks if parent metadata in a prototype property', function () {
       class ContextA {
         prop?: string;
       }
@@ -201,7 +201,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('returns false for child metadata in a class', () => {
+    it('returns false for child metadata in a class', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextB);
@@ -209,7 +209,7 @@ describe('Reflector', () => {
       expect(result).to.be.false;
     });
 
-    it('returns false for child metadata in a prototype', () => {
+    it('returns false for child metadata in a prototype', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextB.prototype);
@@ -217,7 +217,7 @@ describe('Reflector', () => {
       expect(result).to.be.false;
     });
 
-    it('returns false for child metadata in a class property', () => {
+    it('returns false for child metadata in a class property', function () {
       class ContextA {
         prop?: string;
       }
@@ -227,7 +227,7 @@ describe('Reflector', () => {
       expect(result).to.be.false;
     });
 
-    it('returns false for child metadata in a prototype property', () => {
+    it('returns false for child metadata in a prototype property', function () {
       class ContextA {
         prop?: string;
       }
@@ -238,8 +238,8 @@ describe('Reflector', () => {
     });
   });
 
-  describe('hasOwnMetadata', () => {
-    it('allows to check metadata by scalar keys', () => {
+  describe('hasOwnMetadata', function () {
+    it('allows to check metadata by scalar keys', function () {
       class Context {}
       const symbolKey = Symbol();
       const stringKey = 'string';
@@ -259,7 +259,7 @@ describe('Reflector', () => {
       expect(inObject).to.be.true;
     });
 
-    it('allows to check metadata by the MetadataKey', () => {
+    it('allows to check metadata by the MetadataKey', function () {
       class Context {}
       const key = new MetadataKey<MD>('key');
       NR.defineMetadata(key, METADATA, Context);
@@ -267,7 +267,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('checks if metadata in a class', () => {
+    it('checks if metadata in a class', function () {
       class Context {}
       const noMd = R.hasOwnMetadata(METADATA_KEY, Context);
       expect(noMd).to.be.false;
@@ -276,7 +276,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('checks if metadata in a prototype', () => {
+    it('checks if metadata in a prototype', function () {
       class Context {}
       const noMd = R.hasOwnMetadata(METADATA_KEY, Context.prototype);
       expect(noMd).to.be.false;
@@ -285,7 +285,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('checks if metadata in a class property', () => {
+    it('checks if metadata in a class property', function () {
       class Context {
         prop?: string;
       }
@@ -296,7 +296,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('checks if metadata in a prototype property', () => {
+    it('checks if metadata in a prototype property', function () {
       class Context {
         prop?: string;
       }
@@ -307,7 +307,7 @@ describe('Reflector', () => {
       expect(result).to.be.true;
     });
 
-    it('returns false for parent metadata in a class', () => {
+    it('returns false for parent metadata in a class', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       const noMd = R.hasOwnMetadata(METADATA_KEY, ContextB);
@@ -317,7 +317,7 @@ describe('Reflector', () => {
       expect(result).to.be.false;
     });
 
-    it('returns false for parent metadata in a prototype', () => {
+    it('returns false for parent metadata in a prototype', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       const noMd = R.hasOwnMetadata(METADATA_KEY, ContextB.prototype);
@@ -327,7 +327,7 @@ describe('Reflector', () => {
       expect(result).to.be.false;
     });
 
-    it('returns false for parent metadata in a class property', () => {
+    it('returns false for parent metadata in a class property', function () {
       class ContextA {
         prop?: string;
       }
@@ -339,7 +339,7 @@ describe('Reflector', () => {
       expect(result).to.be.false;
     });
 
-    it('returns false for parent metadata in a prototype property', () => {
+    it('returns false for parent metadata in a prototype property', function () {
       class ContextA {
         prop?: string;
       }
@@ -351,7 +351,7 @@ describe('Reflector', () => {
       expect(result).to.be.false;
     });
 
-    it('returns false for child metadata in a class', () => {
+    it('returns false for child metadata in a class', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextB);
@@ -359,7 +359,7 @@ describe('Reflector', () => {
       expect(result).to.be.false;
     });
 
-    it('returns false for child metadata in a prototype', () => {
+    it('returns false for child metadata in a prototype', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextB.prototype);
@@ -367,7 +367,7 @@ describe('Reflector', () => {
       expect(result).to.be.false;
     });
 
-    it('returns false for child metadata in a class property', () => {
+    it('returns false for child metadata in a class property', function () {
       class ContextA {
         prop?: string;
       }
@@ -377,7 +377,7 @@ describe('Reflector', () => {
       expect(result).to.be.false;
     });
 
-    it('returns false for child metadata in a prototype property', () => {
+    it('returns false for child metadata in a prototype property', function () {
       class ContextA {
         prop?: string;
       }
@@ -388,8 +388,8 @@ describe('Reflector', () => {
     });
   });
 
-  describe('getMetadata', () => {
-    it('allows to get metadata by plain keys', () => {
+  describe('getMetadata', function () {
+    it('allows to get metadata by plain keys', function () {
       class Context {}
       const symbolKey = Symbol();
       const stringKey = 'string';
@@ -409,7 +409,7 @@ describe('Reflector', () => {
       expect(objectMd).to.be.eq(METADATA);
     });
 
-    it('allows to get metadata by the MetadataKey', () => {
+    it('allows to get metadata by the MetadataKey', function () {
       class Context {}
       const key = new MetadataKey<MD>('key');
       NR.defineMetadata(key, METADATA, Context);
@@ -417,7 +417,7 @@ describe('Reflector', () => {
       expect(metadata).to.be.eq(METADATA);
     });
 
-    it('can distinguish instances of the MetadataKey', () => {
+    it('can distinguish instances of the MetadataKey', function () {
       class TestClass {}
       const metadata1 = 'metadata-1';
       const metadata2 = 'metadata-2';
@@ -432,21 +432,21 @@ describe('Reflector', () => {
       expect(result1).to.be.not.eq(result2);
     });
 
-    it('returns class metadata', () => {
+    it('returns class metadata', function () {
       class Context {}
       NR.defineMetadata(METADATA_KEY, METADATA, Context);
       const result = R.getMetadata(METADATA_KEY, Context);
       expect(result).to.be.eql(METADATA);
     });
 
-    it('returns prototype metadata', () => {
+    it('returns prototype metadata', function () {
       class Context {}
       NR.defineMetadata(METADATA_KEY, METADATA, Context.prototype);
       const result = R.getMetadata(METADATA_KEY, Context.prototype);
       expect(result).to.be.eql(METADATA);
     });
 
-    it('returns metadata of a class property', () => {
+    it('returns metadata of a class property', function () {
       class Context {
         prop?: string;
       }
@@ -455,7 +455,7 @@ describe('Reflector', () => {
       expect(result).to.be.eql(METADATA);
     });
 
-    it('returns metadata of a prototype property', () => {
+    it('returns metadata of a prototype property', function () {
       class Context {
         prop?: string;
       }
@@ -464,7 +464,7 @@ describe('Reflector', () => {
       expect(result).to.be.eql(METADATA);
     });
 
-    it('returns parent metadata from a class', () => {
+    it('returns parent metadata from a class', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextA);
@@ -472,7 +472,7 @@ describe('Reflector', () => {
       expect(result).to.be.eql(METADATA);
     });
 
-    it('returns parent metadata from a prototype', () => {
+    it('returns parent metadata from a prototype', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextA.prototype);
@@ -480,7 +480,7 @@ describe('Reflector', () => {
       expect(result).to.be.eql(METADATA);
     });
 
-    it('returns parent metadata from a class property', () => {
+    it('returns parent metadata from a class property', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextA, 'prop');
@@ -488,7 +488,7 @@ describe('Reflector', () => {
       expect(result).to.be.eql(METADATA);
     });
 
-    it('returns parent metadata from a prototype property', () => {
+    it('returns parent metadata from a prototype property', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextA.prototype, 'prop');
@@ -496,7 +496,7 @@ describe('Reflector', () => {
       expect(result).to.be.eql(METADATA);
     });
 
-    it('does not returns child metadata from a class', () => {
+    it('does not returns child metadata from a class', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextB);
@@ -504,7 +504,7 @@ describe('Reflector', () => {
       expect(result).to.be.undefined;
     });
 
-    it('does not returns child metadata from a prototype', () => {
+    it('does not returns child metadata from a prototype', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextB.prototype);
@@ -512,7 +512,7 @@ describe('Reflector', () => {
       expect(result).to.be.undefined;
     });
 
-    it('does not returns child metadata from a class property', () => {
+    it('does not returns child metadata from a class property', function () {
       class ContextA {}
       class ContextB extends ContextA {
         prop?: string;
@@ -522,7 +522,7 @@ describe('Reflector', () => {
       expect(result).to.be.undefined;
     });
 
-    it('does not returns child metadata from a prototype property', () => {
+    it('does not returns child metadata from a prototype property', function () {
       class ContextA {}
       class ContextB extends ContextA {
         prop?: string;
@@ -532,15 +532,15 @@ describe('Reflector', () => {
       expect(result).to.be.undefined;
     });
 
-    it('returns undefined if no metadata', () => {
+    it('returns undefined if no metadata', function () {
       class Context {}
       const result = R.getMetadata(METADATA_KEY, Context);
       expect(result).to.be.undefined;
     });
   });
 
-  describe('getOwnMetadata', () => {
-    it('allows to get metadata by plain keys', () => {
+  describe('getOwnMetadata', function () {
+    it('allows to get metadata by plain keys', function () {
       class Context {}
       const symbolKey = Symbol();
       const stringKey = 'string';
@@ -560,7 +560,7 @@ describe('Reflector', () => {
       expect(objectMd).to.be.eq(METADATA);
     });
 
-    it('allows to get metadata by the MetadataKey', () => {
+    it('allows to get metadata by the MetadataKey', function () {
       class Context {}
       const key = new MetadataKey<MD>('key');
       NR.defineMetadata(key, METADATA, Context);
@@ -568,7 +568,7 @@ describe('Reflector', () => {
       expect(metadata).to.be.eq(METADATA);
     });
 
-    it('can distinguish instances of the MetadataKey', () => {
+    it('can distinguish instances of the MetadataKey', function () {
       class TestClass {}
       const metadata1 = 'metadata-1';
       const metadata2 = 'metadata-2';
@@ -583,21 +583,21 @@ describe('Reflector', () => {
       expect(result1).to.be.not.eq(result2);
     });
 
-    it('returns class metadata', () => {
+    it('returns class metadata', function () {
       class Context {}
       NR.defineMetadata(METADATA_KEY, METADATA, Context);
       const result = R.getOwnMetadata(METADATA_KEY, Context);
       expect(result).to.be.eql(METADATA);
     });
 
-    it('returns prototype metadata', () => {
+    it('returns prototype metadata', function () {
       class Context {}
       NR.defineMetadata(METADATA_KEY, METADATA, Context.prototype);
       const result = R.getOwnMetadata(METADATA_KEY, Context.prototype);
       expect(result).to.be.eql(METADATA);
     });
 
-    it('returns metadata of a class property', () => {
+    it('returns metadata of a class property', function () {
       class Context {
         prop?: string;
       }
@@ -606,7 +606,7 @@ describe('Reflector', () => {
       expect(result).to.be.eql(METADATA);
     });
 
-    it('returns metadata of a prototype property', () => {
+    it('returns metadata of a prototype property', function () {
       class Context {
         prop?: string;
       }
@@ -615,7 +615,7 @@ describe('Reflector', () => {
       expect(result).to.be.eql(METADATA);
     });
 
-    it('does not returns parent metadata from a class', () => {
+    it('does not returns parent metadata from a class', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextA);
@@ -623,7 +623,7 @@ describe('Reflector', () => {
       expect(result).to.be.undefined;
     });
 
-    it('does not returns parent metadata from a prototype', () => {
+    it('does not returns parent metadata from a prototype', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextA.prototype);
@@ -631,7 +631,7 @@ describe('Reflector', () => {
       expect(result).to.be.undefined;
     });
 
-    it('does not returns parent metadata from a class property', () => {
+    it('does not returns parent metadata from a class property', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextA, 'prop');
@@ -639,7 +639,7 @@ describe('Reflector', () => {
       expect(result).to.be.undefined;
     });
 
-    it('does not returns parent metadata from a prototype property', () => {
+    it('does not returns parent metadata from a prototype property', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextA.prototype, 'prop');
@@ -647,7 +647,7 @@ describe('Reflector', () => {
       expect(result).to.be.undefined;
     });
 
-    it('does not returns child metadata from a class', () => {
+    it('does not returns child metadata from a class', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextB);
@@ -655,7 +655,7 @@ describe('Reflector', () => {
       expect(result).to.be.undefined;
     });
 
-    it('does not returns child metadata from a prototype', () => {
+    it('does not returns child metadata from a prototype', function () {
       class ContextA {}
       class ContextB extends ContextA {}
       NR.defineMetadata(METADATA_KEY, METADATA, ContextB.prototype);
@@ -663,7 +663,7 @@ describe('Reflector', () => {
       expect(result).to.be.undefined;
     });
 
-    it('does not returns child metadata from a class property', () => {
+    it('does not returns child metadata from a class property', function () {
       class ContextA {}
       class ContextB extends ContextA {
         prop?: string;
@@ -673,7 +673,7 @@ describe('Reflector', () => {
       expect(result).to.be.undefined;
     });
 
-    it('does not returns child metadata from a prototype property', () => {
+    it('does not returns child metadata from a prototype property', function () {
       class ContextA {}
       class ContextB extends ContextA {
         prop?: string;
@@ -683,7 +683,7 @@ describe('Reflector', () => {
       expect(result).to.be.undefined;
     });
 
-    it('returns undefined if no metadata', () => {
+    it('returns undefined if no metadata', function () {
       class Context {}
       const result = R.getOwnMetadata(METADATA_KEY, Context);
       expect(result).to.be.undefined;

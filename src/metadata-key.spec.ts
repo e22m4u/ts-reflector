@@ -1,9 +1,9 @@
 import {expect} from 'chai';
 import {MetadataKey} from './metadata-key.js';
 
-describe('MetadataKey', () => {
-  describe('toString', () => {
-    it('returns a string representation', () => {
+describe('MetadataKey', function () {
+  describe('toString', function () {
+    it('returns a string representation', function () {
       const key1 = new MetadataKey();
       expect(String(key1)).to.be.eq('MetadataKey');
       const key2 = new MetadataKey('key');
